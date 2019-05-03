@@ -1,0 +1,59 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Fri May  3 13:53:17 2019
+
+@author: snyq
+"""
+import numpy as np
+
+k=1
+mu0=1 #rest friction
+muv=0.5 #moving friction
+g=1 #gravity
+m=1 #mass of boxes
+h=1 #timestep
+
+def mu(i,delx1,delx2):
+   if i=1:
+      if delx*k<=mu0:
+         return delx*k/(m*g)
+      else:
+         return muv
+
+def acc(i,delx1=0,delx2=0,v):
+   if i=0:
+      if v[0]=0 and delx1*k<=mu0:
+         return 0
+      else:
+         return k/m*(delx1)-muv*g
+   if i=0:
+      if v[1]=0 and (delx1-delx2)*k<=mu0:
+         return 0
+      else:
+         return k/m*(delx1)-muv*g
+
+def eulerx(x,v,h): #Runga kutta?
+   xnew=x+v*h
+   return xnew
+
+def eulerv(v,a,h): #Runga kutta?
+   vnew=v+a*h
+   return vnew
+
+x=(1,1,1) #initial positions
+v=(0,0,1)
+
+
+
+for i in range(5):
+   delx1=x[1]-x[0]
+   delx2=x[2]-x[1]
+   
+   x[2]=x[2]+v[2]*h
+   x[1]=eulerx(x[1],v[1])
+   x[0]=eulerx(x[0],v[0])
+   
+   
+   
+   
