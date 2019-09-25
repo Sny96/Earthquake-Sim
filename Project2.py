@@ -1,6 +1,7 @@
 
 import numpy as np
 import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
 
 k=10
 mu0=100 #rest friction
@@ -9,14 +10,15 @@ g=1 #gravity
 m=1 #mass of boxes
 deltat=0.01 #timestep
 epsilon=1e-15
-time=150
+time=1000
 n=int(time/deltat)
 
+state0=1
 x0=1
 v0=1
-state0=1
 
-eps=0.1
+
+eps=1 
 xi=1
 gamma=1
 
