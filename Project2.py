@@ -3,22 +3,11 @@ import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 
-k=10
-mu0=100 #rest friction
-muv=1 #moving friction
-g=1 #gravity
-m=1 #mass of boxes
-deltat=0.01 #timestep
-epsilon=1e-15
-time=1000
+deltat=0.001 #timestep
+time=10
 n=int(time/deltat)
 
-state0=1
-x0=1
-v0=1
-
-
-eps=1 
+eps=0.3
 xi=1
 gamma=1
 
@@ -26,7 +15,6 @@ def f(x): #vector in x = ((state,delta,v))
    state = x[0]
    delta = x[1]
    v = x[2]
-   
    stateDOT = -v*(state+(1+eps)*np.log(v))
    deltaDOT = v-1
    vDOT = -gamma**2*(delta+(1/xi)*(state+np.log(v)))
@@ -51,7 +39,7 @@ def rk4(x0, h, n):
        x[i] = xi + (k1 + 2*k2+ 2*k3 + k4) / 6
     return x,t
    
-x_ini=np.array([1,1,1]) #initial positions,velocity
+x_ini=np.array([1,1,1]) #initial state,slip,velocity
 all_data=rk4(x_ini,deltat,n)
 #all_data_list=all_data.tolist()
 timelist=all_data[1]
